@@ -1,0 +1,72 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
+
+#roomdet-body {
+  text-align: left; }
+
+#det-room {
+  position: relative;
+  margin-top: 5%;
+  float: left;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 100px; }
+  #det-room h2, #det-room h3 {
+    text-decoration: underline;
+    margin-bottom: 10%; }
+
+#rom-nam, #rom-prc, del {
+  color: #ffa500;
+  position: absolute;
+  right: 0%; }
+#rom-prc{
+  color: #40ff00;
+}
+#rom-des {
+  color: #fff;
+  text-decoration: underline; }
+
+#rom-p{
+  word-break: break-all;
+}
+
+.bi-cash-coin {
+  font-size: 100px;
+  color: #fff;
+  position: fixed;
+  bottom: 30%;
+  left: -3%;
+  cursor: pointer;
+  transition: 2s; }
+
+.bi-cash-coin:hover {
+  left: 0%; }
+
+#bak-hom {
+  position: absolute;
+  right: 0%; }
+
+#images-room {
+  margin: 8% 0% 5% 0%;
+  float: right;
+  width: 45%; }
+
+.room-imgs {
+  max-width: 20%;
+  cursor: pointer; }
+
+.active-img-room img {
+  max-width: 100%;
+  height: 500px; }
+
+.room-imgs:hover {
+  border: #fff 5px solid; }
+
+footer{
+  visibility: hidden;
+}

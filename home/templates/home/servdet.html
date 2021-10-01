@@ -1,0 +1,15 @@
+{% extends 'mpages/index.html' %}
+
+{% block cont %}
+  <div id="serv">
+    <div class="serv"><br>
+      <h1 class="sertit">detail about {{ serv.stitle }} service</h1>
+      <hr>
+      <br>
+      <img src="{{ serv.slogo.url }}" alt="" class="servimg f-right">
+      <p>{{ serv.sdes }}</p>
+      <br><br><br>
+      <div class="clear"></div>
+    </div>
+  <div>
+{% endblock cont %}

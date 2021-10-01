@@ -1,0 +1,82 @@
+{% extends 'mpages/index.html' %}
+
+    {% block nav %}
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light animate__animated animate__rubberBand" id="home">
+
+      <div class="container-fluid">
+        <h5 class="navbar-brand">saske hotel</h5>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" aria-current="page" href="{% url 'main:home' %}">home</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:serv' %}">services</a></li>
+              <li class="nav-item"><a class="nav-link active animate__animated animate__flash" href="{% url 'main:room' %}">rooms</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:rev' %}">reviews</a></li>
+          </ul>
+          <form class="d-flex">
+          {% if user %}
+            <a class="btn btn-dark bg-warning" href="{% url 'orders:orders' %}">your order</a>
+          {% endif %}
+          {% if order %}
+            <a class="btn btn-dark bg-info" href="{% url 'orders:conf' %}">your bill</a>
+          {% endif %}
+          </form>
+        </div>
+      </div>
+    </nav>
+    {% endblock nav %}
+    {% block cont %}
+    <section id="rooms">   
+        <div class="tc"> 
+            <h1>our rooms</h1>
+            <p>we have <span id="spechial">+{{ rooms|length }}</span> rooms to keep your comfort as we can</p>
+        </div>
+        <div class="row">
+        {% for room in rooms %}
+          {% if room.roavaliable %}
+                <div class="item-rooms col-md-3 col-sm-5"><img class="rooms-img" src="{{ room.roimage1.url }}" alt="oc"/>
+                <h5>{{ room.roprice }}<sup>$</sup></h5>
+
+          {% if room.roomoldprice > room.roprice and room.roomoldprice %}
+            <h5><del>{{ room.roomoldprice }}<sup>$</sup></del></h5>
+          {% endif %}  
+          
+          <br>
+          {% if room.roomoldprice > room.roprice %}
+            <span  class="sale me-2 mb-3">SALE</span>
+          {% endif %}
+          {% if room.ronew %}
+            <span class="new me-2 mb-3">NEW</span>
+          {% endif %}
+                <h3>{{ room.roname }} </h3>
+                <a class="btn btn-warning m-5" href="{% url 'main:romdet' room.roslug %}">more detail</a>
+            </div>
+          {% endif %}
+
+
+
+          {% if not room.roavaliable %}
+            <div class="item-rooms col-md-3 col-sm-5" style="opacity:0.5;">
+            <img class="rooms-img" src="{{ room.roimage1.url }}" alt="oc"/>
+
+          {% if room.roomoldprice > room.roprice and room.roomoldprice and room.roavaliable%}
+            <h5><del>{{ room.roomoldprice }}<sup>$</sup></del></h5>
+          {% endif %}  
+          
+          <br>
+          {% if room.roomoldprice > room.roprice %}
+            <span  class="sale me-2 mb-3">SALE</span>
+          {% endif %}
+          {% if room.ronew %}
+            <span class="new me-2 mb-3">NEW</span>
+          {% endif %}
+                <span class="comp me-2 mb-3">Rent</span>
+                <h3>{{ room.roname }} </h3>
+            </div>
+          {% endif %}
+
+        {% endfor %}
+        </div>
+        <a class="btn btn-warning" href="{% url 'main:home' %}">back to home</a>
+    </section>
+    {% endblock cont %}

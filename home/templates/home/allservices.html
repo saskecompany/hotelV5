@@ -1,0 +1,44 @@
+{% extends 'mpages/index.html' %}
+
+    {% block nav %}
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light animate__animated animate__rubberBand" id="home">
+
+      <div class="container-fluid">
+        <h5 class="navbar-brand">saske hotel</h5>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" aria-current="page" href="{% url 'main:home' %}">home</a></li>
+              <li class="nav-item"><a class="nav-link active animate__animated animate__flash" href="{% url 'main:serv' %}">services</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:room' %}">rooms</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:rev' %}">reviews</a></li>
+          </ul>
+          <form class="d-flex">
+            {% if user %}
+            <a class="btn btn-dark bg-warning" href="{% url 'orders:orders' %}">your order</a>
+          {% endif %}
+          {% if order %}
+            <a class="btn btn-dark bg-info" href="{% url 'orders:conf' %}">your bill</a>
+          {% endif %}
+          </form>
+        </div>
+      </div>
+    </nav>
+    {% endblock nav %}
+    {% block cont %}
+    <section id="services">   
+        <div class="t">
+        <h1>what we provide</h1>
+        <p>we have <span id="spechial">+{{ servs|length }}</span> services to make you more happy <br> and keep your comfortable</p>
+        </div>
+        <div class="row">
+        {% for serv in servs %}
+        <div class="item-services col-md-3 col-sm-5"><img class="services-img" src="{{ serv.slogo.url }}" alt="oc"/>
+            <h3>{{ serv.stitle }} </h3>
+            <p>{{ serv.sdes }}</p><a href="{% url 'main:servdet' serv.id %}">read more...</a>
+        </div>
+        {% endfor %}
+        <a class="btn btn-warning" href="{% url 'main:home' %}">back to home</a>
+    </section>
+
+    {% endblock cont %}

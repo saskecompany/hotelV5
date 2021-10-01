@@ -1,0 +1,13 @@
+{% extends 'mpages/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block cont %}
+    <h1 id="userf">book the room </h1>
+    <h3 id="userf"> are you sure you need book {{ room.roname }} room by {{ room.roprice}}$ </h3>
+    <form id="userf" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn-outline-warning m-3" type="submit" value="confirm">
+        
+    </form>
+{% endblock cont %}

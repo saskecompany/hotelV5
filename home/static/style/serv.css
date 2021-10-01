@@ -1,0 +1,10 @@
+/* #serv{}
+.serv{}
+.servtit{} */
+.servimg{
+    border: black 3px solid;
+    border-radius:50%;  
+}
+.clear{
+    clear:both;
+}

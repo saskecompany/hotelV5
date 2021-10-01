@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html> 
+{% block head %}
+  {% include "base/head.html" %}
+{% endblock head %}
+{% block body %}
+  <body class="container">
+{% endblock body %}
+  
+    <div id="up"> 
+      <div class="up-cl"><a href="#home"><i class="bi bi-arrow-up-circle-fill"></i></a></div>
+    </div>
+
+    {% block alert %}{% endblock alert %}
+    {% block nav %}
+          {% include "base/nav.html" %}
+    {% endblock nav %}
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} m-3"> {{ message }}</div>
+        {% endfor %}
+    </ul>
+  {% endif %}
+    {% block header %}
+      <header class="container head animate__animated animate__shakeX">
+        <div id="msg"> 
+          <h1 class="we-msg animate__animated animate__bounceInLeft">welcome on <span id="name" class="name animate__animated animate__zoomInDown animate__delay-1s"></span> hotel</h1>
+        </div>
+        <button class="btn-warning tbtnb animate__animated animate__bounceInUp"><i class="bi bi-search"></i></button>
+        <div id="id"> <img id="logo-img" class="animate__animated" src="{% static './media/logo/logo.jpg' %}"/></div>
+        <div id="class"> 
+          <form action="{% url 'main:room' %}" method="GET">
+            <input type="search" name="search_room" id="search" />
+            <input class="btn btn-success" type="submit" value="search" />
+          </form>
+        </div>
+      </header>
+    {% endblock header %}
+    {% block cont %}
+      {% include "spages/index/services.html" %}
+      {% include "spages/index/rooms.html" %}
+      {% include "spages/index/review.html" %}
+      {% include "spages/index/us.html" %}
+    {% endblock cont %}
+
+    {% block foter %}
+      {% include "base/footer.html" %}
+    <hr style="height:3px; opacity:0.9;"/>
+    <div id="copy">&copy; design by SASKE Company 2021-2022</div>
+    {% endblock foter %}
+    
+    {% block scripts %}
+        {% include "base/scripts.html" %}
+    {% endblock scripts %}
+    {% block nscr %}{% endblock nscr %}
+  </body>
+</html>

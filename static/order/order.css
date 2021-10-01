@@ -1,0 +1,121 @@
+/* model order list  */
+#order{
+    background-color: #000;
+    border-radius: 75px;
+    padding: 3%;
+    text-align: center;
+    font-size: larger;
+}
+.to{
+    color: gold;
+}
+#ordert{
+    width: 100%;
+    color: #fff;
+    vertical-align: middle;
+}
+
+th{
+    border: 1px green solid;
+    background-color: goldenrod;
+}
+td{
+    border: 1px goldenrod solid;
+}
+.q{
+    width: 100px;
+}
+.totprice{
+    width: 100px;
+    color: green;
+    background-color: white;
+    color: black;
+}
+.del, .change, .totprice{
+    transition: 2s;
+}
+.del:hover{
+    box-shadow: red 10px 10px 10px;
+}
+
+.totprice:hover{
+    box-shadow: white 10px 10px 10px;
+}
+.change:hover{
+    box-shadow: orange 10px 10px 10px;
+}
+#roimgt{
+    width: 250px;
+}
+
+/* ---------------------------------------------------------- */
+
+
+/* order list form */
+
+#form{
+    background-color: black;
+    border-radius: 75px;
+    padding: 2%;
+}
+input{
+    margin: 2%;
+    border-radius: 75px;
+    font-size: 22px;
+}
+label{
+    margin: 2%;
+    padding: 0% 5%;
+    color: #569;
+    font-size: 22px;
+}
+.fname{
+    margin: 1%;
+}
+.usphone{
+    margin: 0%;
+}
+.lname{
+    margin: 1%;
+}
+.usaddress{
+    margin: 2.5%;
+}
+
+/* --------------------------------------- */
+.alert{
+    border-radius: 55px;
+}
+
+#finalspan{
+    color:green;
+    text-decoration: underline;
+}
+
+/* -------------------------------------------- */
+
+/* conf.css */
+
+#bill{
+    background-color: black;
+    padding: 5%;
+    border-radius: 75px;
+}
+.billtit{
+    text-align: center;
+}
+.bill{
+    border: white 2px solid;
+    padding: 3%;
+}
+.cd{
+    color: green;
+}
+.brom{
+    color: orange
+}
+.cdp{
+    color: green;
+    text-decoration: underline;
+    font-size: 50px;
+}

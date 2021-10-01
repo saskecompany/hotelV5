@@ -1,0 +1,63 @@
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(../media/images/backid2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 3%;
+    border-radius: 25px;
+    margin: 1% 0% 0% 0%;
+    position: relative;
+    z-index: 1; }
+#header h1,#user-tools{
+    background: linear-gradient(60deg, #526 80%, #ffa500 20%);
+    padding: 15px;
+    border-radius: 20%;
+    text-align: center;
+    border-radius: 25px; }
+#name {
+    text-transform: capitalize;
+    color: #ffa500;
+    font-size: 30px;
+    font-weight: 1000;
+    border-radius: 25px; }
+    
+
+#logo{
+    width: 70px;
+    opacity: 50%;
+    transition: 2s; }
+
+#header:hover #logo {
+    width: 80px;
+    border-radius: 50%;
+    opacity: 100%; }
+
+.module h2, .module caption, .inline-group h2{
+    background: linear-gradient(-60deg, #ffa500 10%, #526 30%);
+    border-radius: 25px;
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button, .button.default{
+    background: linear-gradient(-60deg, #512 10%, #001d7b 90%);
+    border-radius: 25px;
+}
+input[type=submit].default, .submit-row input.default{
+    background: linear-gradient(-60deg, #2b8523 10%, #000000 90%);
+    border-radius: 25px;
+}
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background: linear-gradient(60deg, #512 10%, #001d7b 90%);
+    border-radius: 25px;
+}
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover{
+    background: linear-gradient(60deg, #2b8523 10%, #000000 90%);
+    border-radius: 25px;
+}
+
+div.breadcrumbs{
+    background: linear-gradient(60deg, #ffa500 5%, #526 95%);
+    border-radius: 25px;
+}

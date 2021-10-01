@@ -1,0 +1,68 @@
+{% extends 'mpages/index.html' %}
+{% block nav %}
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light animate__animated animate__rubberBand" id="home">
+        <div class="container-fluid">
+        <h5 class="navbar-brand">saske hotel</h5>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link animate__animated animate__flash" aria-current="page" href="{% url 'main:home' %}">home</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:serv' %}">services</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:room' %}">rooms</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:rev' %}">reviews</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="#form">rate us</a></li>
+            </ul>
+            <form class="d-flex">
+            {% if user %}
+            <a class="btn btn-dark bg-success" href="{% url 'orders:orders' %}">your order</a>
+            {% endif %}
+            </form>
+        </div>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block cont %}
+    <div id="bill">
+        <h1 class="billtit">invoic from <span id="name" class="name animate__animated animate__zoomInDown animate__delay-1s">saske</span> hotel</h1>
+        <div class="bill">
+                <span class="billid">{{ dord.id }} </span>
+            <div class="f-right">
+                <h6>{{ dord.bookat }}</h6>
+            </div>
+            <br>
+            <br>
+            <br>
+            <h3>invoic to</h3>
+            <h4 class="cd">{{ dord.fname }} {{ dord.mname }} {{ dord.lname }}</h4>
+            <h5>address: <h6 class="cd"> {{ dord.usaddres }} </h6></h5>
+            <br>
+            <br>
+            <table  class="table table-responsive-sm" id="ordert">
+                <tr>
+                    <th>room name</th>
+                    <th>price per day</th>
+                    <th>Duration of stay</th>
+                    <th>total price</th>
+                </tr>
+                <h4> your booked rooms details:</h4>
+                <br>
+                {% for rom in romord %}
+                    <tr>
+                        <td>{{ rom.brom }}</td>
+                        <td><h4>{{ rom.sroprice }}$ </h4></td>
+                        <td><h4>{{ rom.stay }} days</h4></td>
+                        <td><h4>{{ rom.totprice }}$</h4></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td><h3 class="cd">total:</h3></td>
+                    <td></td>
+                    <td></td>
+                    <td> <h3> <span class="cdp"> {{ dord.totprc }} $ </span> </h3> </td>
+                </tr>
+            </table>
+            <div style="text-align: center;"><button onclick="window.print()" class="btn btn-outline-info m-auto" style="font-size: 40px;">print</button></div>
+        </div>
+    </div>
+
+{% endblock cont %}

@@ -1,0 +1,20 @@
+{% load crispy_forms_tags %}
+    
+    <div class="container" id="form">
+      <h2>rate us </h2>
+      <p>we will be happy if you rate us<br> for know how our site user friendly </p>
+      <div class="fim">
+        <form data-aos="flip-down" data-aos-offset="400" data-aos-easing="ease-in-sine" data-aos-duration="1000" id="form-items" action="" method="post" enctype="multipart/form-data" data-ajax="false">
+          {% csrf_token %}
+          <fieldset> 
+            <legend>
+            <p class="bg-info">the * symbol mean it is required </p>
+            <br>
+              {{ ref|crispy }}
+            <br>
+            </legend>
+          </fieldset>
+              <input class="btn btn-warning" type="submit" value="rate now"/>
+        </form>
+      </div>
+    </div>

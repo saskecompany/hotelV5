@@ -1,0 +1,13 @@
+    <section id="services">   
+      <div class="t">
+        <h1 data-aos="flip-left" data-aos-offset="350" data-aos-easing="ease-in-sine" data-aos-duration="1000">what we provide</h1>
+        <p data-aos="flip-down" data-aos-offset="350" data-aos-easing="ease-in-sine" data-aos-duration="1000">we have <span id="spechial" data-aos="fade-up-right" data-aos-offset="520" data-aos-duration="1000">+{{ servs|length }}</span> services to make you more happy <br> and keep your comfortable</p>
+      </div>
+      <div class="row">
+      {% for serv in servs|slice:"3" %}
+        <div class="item-services col-md-3 col-sm-5" data-aos="{% cycle 'fade-right' 'fade-up' 'fade-left' %}" data-aos-offset="400" data-aos-easing="ease-in-sine" data-aos-duration="1000"><img class="services-img" src="{{ serv.slogo.url }}" alt="oc"/>
+          <h3>{{ serv.stitle }} </h3>
+          <p>{{ serv.sdes }}</p><a href="{% url 'main:servdet' serv.id %}">read more...</a>
+        </div>
+      {% endfor %}
+<a href="{% url 'main:serv' %}" class="btn btn-warning">see more</a></section>

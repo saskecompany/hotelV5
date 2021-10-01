@@ -1,0 +1,19 @@
+{% if res %}
+    <section id="rate" style="text-align:center;" data-aos="flip-up" data-aos-offset="500" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+      <div class="item-rate row"> 
+        {% for re in res|slice:"3" %}
+        <div class="one-rate col-md-4"> 
+          <div class="info">
+          {% if re.reimage %}
+            <a href="{{ re.reimage.url }}"><img src="{{ re.reimage.url }}" alt="{{ re.rename }}'s picture not found"/></a>
+          {% else %}
+              <img src="../../static/media/rooms/428-9.jpg" alt="{{ re.rename }}'s photo">
+          {% endif %}
+            <h3>{{ re.rename }} </h3><span class="nstar">{{ re.rerate }}</span><span class="rate"></span>
+          </div>
+          <a href="{% url 'main:rev' %}" title="{{ re.redes }}" class="redes p  ">{{ re.redes }}</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+{% endif %}

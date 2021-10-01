@@ -1,0 +1,155 @@
+{% extends 'mpages/index.html' %}
+{% block nav %}
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light animate__animated animate__rubberBand" id="home">
+        <div class="container-fluid">
+        <h5 class="navbar-brand">saske hotel</h5>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link animate__animated animate__flash" aria-current="page" href="{% url 'main:home' %}">home</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:serv' %}">services</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:room' %}">rooms</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:rev' %}">reviews</a></li>
+                <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="#form">rate us</a></li>
+            </ul>
+            <form class="d-flex">
+            {% if user %}
+            <a class="btn btn-dark bg-success" href="{% url 'orders:orders' %}">your order</a>
+            {% endif %}
+            </form>
+        </div>
+        </div>
+    </nav>
+{% endblock nav %}
+ {%block cont %}
+        <section id="order">   
+        <div class="to"> 
+            <h1>your order</h1>
+        {% if order %}
+            <h2> hi {{ order.fname }} you have a bill can go to it by <a href="{% url 'order:conf' %}"> click here </a> <h2>
+        {% endif %}
+        {% if usorder %}
+            </div>
+        <table  class="table table-responsive-sm" id="ordert">
+            <tr>
+                <th>room name</th>
+                <th>price per day</th>
+                <th>time stay & Duration stay</th>
+                <th>total price</th>
+                <th>delete</th>
+            </tr>
+        {% else %}
+        <br>
+            <h1 class="alert alert-warning"> sorry you don't booked any rooms go to rooms from here <a class="text text-info" href="{% url 'home:room' %}"> all rooms</a> <h1>
+        {% endif %}
+    
+    {% for order in usorder %}
+            <tr>
+                <td>
+                    <h3>{{ order.brom.roname }}</h3>
+                    <a href="{{ order.brom.roimage1.url }}"><img id="roimgt" src="{{ order.brom.roimage1.url }}" alt="room image"></a>
+                </td>
+                
+                <td >
+                    <del class="prdel">{% if order.srooldprice %}{{ order.srooldprice }} $ {% endif %}</del>
+                    <h4 class="pr" id="price{{ order.brom.id }}">{{ order.sroprice }} $</h4>
+                </td>
+                <form method="POST" action="{% url 'stay:stay' order.brom.id %}">
+                {% csrf_token %}
+                    <td>
+                        <input type="date" name="dt" id="dt" required>
+                        {% if order.books %}
+                            <h4>{{ order.books }}</h4>
+                        {% endif %}
+                        <input onkeyup="totprc({{ order.brom.id }})" id="quant{{ order.brom.id }}" class="q" name="q" type="number" value="{{ order.stay }}">
+                        <input type="submit" class="change btn btn-outline-warning" value="change">
+                    </td>
+                    <td><input id="totprice{{ order.brom.id }}" class="totprice" name="totprice" type="text" value="{{ order.totprice }}$" disabled></td>
+                </form>
+                <form method="POST" action="{% url 'user:cancelbook' %}">
+                {% csrf_token %}
+                    <input name="rom" type="text" value="{{ order.brom.roname }}" hidden>
+                    <td><input type="submit" class="del btn btn-outline-danger" value="x"></td>
+                </form>
+            </tr>
+    {% endfor %}
+            
+        </table>
+    {% if usorder %}
+            <tr>
+                <h1 id="final"> total price is <span id='finalspan'> </span> </h1>
+            </tr>
+        <a href="#form" class="btn btn-outline-success next" style="font-size:50px;"> Next</a>
+        <a href="{% url 'user:delall' %}" class="btn btn-outline-danger delall" style="font-size:40px;"> cancel order</a>
+        
+    {% endif %}
+    </section>
+    {% if usorder %}
+    <div id="form">
+        <h1>confirm order</h1>
+        <form class="conf" action="{% url 'orders:conf' %}" method="POST">
+            {% csrf_token %}
+            <label for="fname">first name</label>
+            <input required type="text" name="fname" placeholder="enter your first name" id="" value="{{ order.fname }}"><br>
+
+            <label class="mname" for="mname">middle name</label>
+            <input required type="text" name="mname" placeholder="enter your middle name" id="" value="{{ order.mname }}"><br>
+            
+            <label for="lname">last name</label>
+            <input required type="text" name="lname" placeholder="enter your last name" id="" value="{{ order.lname }}"><br>
+            
+            <label class="usid" for="usid">id number</label>
+            <input required type="number" name="usid" placeholder="enter your id number" id="usid" value="{{ order.idnumber }}"><br>
+
+            <label class="usaddres" for="usaddres">address</label>
+            <input required type="text" name="usaddres" placeholder="enter your address" id="" value="{{ order.usaddres }}"><br>
+            
+            <label class="usphone" for="usphone">phone number</label>
+            <input required type="text" name="usphone" placeholder="enter your phone number" id="usid" value="{{ order.usphone }}"><br>
+            
+            <input required class="allprc" type="text" name="totprc" id="totprc" hidden><br>
+            
+            
+            <input required class="btn btn-outline-warning" type="submit" value="confirm order" id=""><br>
+        </form>
+        
+    </div>
+    {% endif %}
+
+{% endblock cont %}
+
+
+
+{% block nscr %}
+    <script>
+    $(document).ready(function(){
+        $(".q")[0].focus();
+        $(".q")[0].select();
+    });
+    function totprc(i){
+        var prc = document.getElementById("price" + i);
+        var quant = document.getElementById("quant" + i);
+        var tot = document.getElementById("totprice" + i);
+        if(quant.value < 0){
+            quant.value = 1;
+            tot.value = Number(prc.innerHTML.slice(0,-1)) * Number(quant.value)+"$";
+        }
+        if(quant.value == 0){
+            tot.value = Number(prc.innerHTML.slice(0,-1)) + "$";
+        }
+        else{
+            tot.value = Number(prc.innerHTML.slice(0,-1)) * Number(quant.value)+"$";
+        }
+    }
+    
+    var t = document.querySelectorAll(".totprice");
+    var f = document.getElementById("finalspan");
+    var tall = document.querySelectorAll(".allprc");
+    res = Number(t[0].value.slice(0, -1));
+    for(i=1; i < t.length; i++){
+        res = Number(t[i].value.slice(0, -1)) + Number(res);
+    }        
+    f.innerHTML += res + "$";
+    tall[0].value = res;
+    </script>
+{% endblock nscr %}

@@ -1,0 +1,136 @@
+{% extends './mpages/index.html' %}
+{% load static %}
+{% block head %}
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="{% static './media/logo/logo.jpg' %}" type="image/gif" sizes="16x16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>SASKE@Hotel book a room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static './bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './style/animate.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './style/aos.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './style/romdet.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './style/style.css' %}"/>
+  </head>
+{% endblock head %}
+{% block body %}
+  <body class="container" id="roomdet-body">
+{% endblock body %}
+{% block nav %}
+  <nav class="container navbar navbar-expand-lg navbar-light bg-light animate__animated animate__rubberBand" id="home">
+
+      <div class="container-fluid">
+        <h5 class="navbar-brand" style="text-transform:none;">more detail about <Span style="color:green; font-size:30px; font-weight:1000; text-decoration:underline;" >{{ romdet.roname }}</span> room</h5>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" aria-current="page" href="{% url 'main:home' %}">home</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:serv' %}">services</a></li>
+              <li class="nav-item"><a class="nav-link active animate__animated animate__bounceInRight" href="{% url 'main:room' %}">rooms</a></li>
+              <li class="nav-item"><a class="nav-link animate__animated animate__bounceInRight" href="{% url 'main:rev' %}">reviews</a></li>
+          </ul>
+          <form class="d-flex">
+          {% if user %}
+            <a class="btn btn-dark bg-warning" href="{% url 'orders:orders' %}">your order</a>
+          {% endif %}
+          {% if order %}
+            <a class="btn btn-dark bg-info" href="{% url 'orders:conf' %}">your bill</a>
+          {% endif %}
+          </form>
+        </div>
+      </div>
+    </nav>
+{% endblock nav %}
+  {% block cont %}
+    <div id="det-room">
+      
+      <h2>room's name: <br> <span id ="rom-nam"> {{ romdet.roname }} </span></h2>
+      {% if romdet.roomoldprice > romdet.roprice and romdet.roomoldprice %}
+        <h3>room's previous price : <br> <span id ="rom-prc"> <del>{{ romdet.roomoldprice }}<span>$</span></span></del></h3>
+      {% endif %}
+      <h3>room's price : <br> <span id ="rom-prc"> {{ romdet.roprice }}<span>$</span></span></h3>
+      <h2><span id ="rom-des"> description </span>:</h2>
+      <p id="rom-p">{{ romdet.rodes }}</p>
+      <div id="book"><i class="bi bi-cash-coin"></i><a class="btn btn-outline-warning" id="bok-rom" href="{% url 'user:userf' romdet.id %}">book room</a><a class="btn btn-outline-danger" id="bak-hom" href="{% url 'main:home' %}"">back to home</a></div>
+    </div>
+    
+    <div id="images-room">
+      <span>
+        {% if romdet.roomoldprice > romdet.roprice %}
+          <span class="sale me-2 mb-3">SALE</span>
+        {% endif %}
+          
+        {% if romdet.ronew %}
+          <span class="new me-2 mb-3">NEW</span>
+        {% endif %}
+      </span>
+      <a class="active-img-room" id="active-room-img-box" href="{{ romdet.roimage1.url }}">
+        <img class="room-imgs" src="{{ romdet.roimage1.url }}" alt="{{ romdet.roname }}"/>
+      </a>
+      {% if romdet.roimage1 %}
+        <a class="room-imgs-box" onclick="actimg(0)"> <img class="room-imgs" src="{{ romdet.roimage1.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage2 %}
+        <a class="room-imgs-box" onclick="actimg(1)"> <img class="room-imgs" src="{{ romdet.roimage2.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage3 %}
+        <a class="room-imgs-box" onclick="actimg(2)"> <img class="room-imgs" src="{{ romdet.roimage3.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage4 %}
+        <a class="room-imgs-box" onclick="actimg(3)"> <img class="room-imgs" src="{{ romdet.roimage4.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage5 %}
+        <a class="room-imgs-box" onclick="actimg(4)"> <img class="room-imgs" src="{{ romdet.roimage5.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage6 %}
+        <a class="room-imgs-box" onclick="actimg(5)"> <img class="room-imgs" src="{{ romdet.roimage6.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage7 %}
+        <a class="room-imgs-box" onclick="actimg(6)"> <img class="room-imgs" src="{{ romdet.roimage7.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      {% if romdet.roimage8 %}
+        <a class="room-imgs-box" onclick="actimg(7)"> <img class="room-imgs" src="{{ romdet.roimage8.url }}" alt="{{ romdet.roname }}"/></a>
+      {% endif %}
+      
+      </div>
+  {% endblock cont %}
+
+  {% block nscr %}
+    <script>
+      let bak = document.getElementById("bak-hom");
+
+      $(document).ready(function(){
+          $("#bok-rom").hide(0);
+          $(".bi-cash-coin").click(function(){
+              $(".bi-cash-coin").hide();
+              $("#bok-rom").show(500);
+          });
+          $("#bak-hom").mouseover(function(){
+              bak.innerHTML = "----------------------->";
+              $(".bi-cash-coin").show(500);
+              $("#bok-rom").hide(500);
+          });
+          $("#bak-hom").mouseleave(function(){
+              bak.innerHTML = "back to home";
+          });
+      });
+
+
+
+
+      let ri = document.querySelectorAll(".room-imgs");
+      let rib = document.querySelectorAll(".room-imgs-box");
+      let arib = document.getElementById("active-room-img-box");
+
+
+      function actimg(i){
+          arib.innerHTML=rib[i].innerHTML;
+          let s = i+1
+          console.log(s)
+          arib.setAttribute("href", ri[s].src)
+      }
+
+    </script>
+  {% endblock nscr %}

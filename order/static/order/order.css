@@ -1,0 +1,234 @@
+/* model order list  */
+#order{
+    background-color: #000;
+    border-radius: 75px;
+    padding: 3%;
+    text-align: center;
+}
+.to{
+    color: gold;
+}
+#ordert{
+    width: 100%;
+    color: #fff;
+    vertical-align: middle;
+}
+tr{
+    transition: 1s;
+}
+tr:hover{
+    box-shadow: orange 10px 10px 10px;
+    transform: scalez(25px);
+
+}
+th{
+    border: 1px green solid;
+    background-color: goldenrod;
+}
+td{
+    border: 1px goldenrod solid;
+}
+#dt{
+    border-radius: 0%;
+}
+.q{
+    width: 40%;
+}
+.totprice{
+    width: 80%;
+    color: green;
+    background-color: white;
+    color: black;
+}
+.del, .change, .totprice{
+    transition: 2s;
+}
+.del:hover{
+    box-shadow: red 10px 10px 10px;
+}
+
+.totprice:hover{
+    box-shadow: white 10px 10px 10px;
+}
+.change:hover{
+    box-shadow: orange 10px 10px 10px;
+}
+#roimgt{
+    width: 100%;
+}
+.next, .delall{
+    transition: 3s;
+}
+.next:hover{
+    box-shadow: green 12px 12px 15px;
+
+}
+.delall:hover{
+    box-shadow: red 12px 12px 15px;
+
+}
+
+/* ---------------------------------------------------------- */
+
+
+/* order list form */
+
+#form{
+    background-color: black;
+    border-radius: 75px;
+    padding: 2%;
+}
+input{
+    margin: 2%;
+    border-radius: 70px;
+    font-size: 22px;
+    text-align: center;
+}
+label{
+    margin: 2%;
+    padding: 0% 5%;
+    color: #569;
+    font-size: 22px;
+}
+.fname{
+    margin: 1%;
+}
+.usphone{
+    margin: 0%;
+}
+.lname{
+    margin: 1%;
+}
+.usaddress{
+    margin: 2.5%;
+}
+
+/* --------------------------------------- */
+.alert{
+    border-radius: 55px;
+}
+
+#finalspan{
+    color:green;
+    text-decoration: underline;
+}
+
+/* -------------------------------------------- */
+
+/* conf.css */
+
+#bill{
+    background-color: black;
+    padding: 5%;
+    border-radius: 75px;
+}
+.billtit{
+    text-align: center;
+}
+.bill{
+    border: white 2px solid;
+    padding: 3%;
+}
+.billid{
+    border: white 2px solid;
+    border-radius: 50%;
+    padding: 1%;
+    position: absolute;
+}
+.cd{
+    color: green;
+}
+.brom{
+    color: orange
+}
+.cdp{
+    color: green;
+    text-decoration: underline;
+    
+}
+.name{
+    text-transform: capitalize;
+        color: #ffa500;
+        font-size: 80px;
+        font-weight: 1000;
+}
+
+.f-right{
+    float: right;
+}
+
+
+
+
+/* querry code */
+
+
+@media screen and (max-width:750px){
+
+    .conf{
+        width: 100%;
+        padding: 0%;
+    }
+    .conf label{
+        padding: 0%;
+    }
+} 
+@media screen and (max-width:540px){
+
+    #roimgt{
+        display: none;
+    }
+    #dt{
+        width: 40%;
+        border-radius: 0%;
+    }
+    .q{
+        width: 25%;
+    }
+} 
+@media screen and (max-width:530px){
+    #roimgt{
+        display: none;
+    }
+    #dt{
+        width: 50px;
+        border-radius: 0%;
+    }
+    .q{
+        width: 25px;
+    }
+} 
+@media screen and (max-width:420px){
+    #order{
+        background-color: transparent;
+    }
+    .del, .change{
+        padding: 1%;
+        font-size:100%;
+    }
+    #roimgt{
+        display: none;
+    }
+    #ordert{
+        max-width: 50%;
+    }
+    #dt{
+        width: 20px;
+        border-radius: 0%;
+    }
+    .q{
+        width: 25px;
+    }
+    *{
+        font-size: 15px;
+    }
+} 
+@media print{
+    #up, nav, header, footer, #copy,.billtit, .f-right, .btn, .row, hr{
+        display: none;
+        visibility: hidden;
+    }
+    body{
+        background-color: initial;
+    }
+}
