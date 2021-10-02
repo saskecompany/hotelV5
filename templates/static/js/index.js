@@ -72,6 +72,17 @@ for(var i=0; i<rate.length; i++)
                 }
             }
         }
-
+    if(nstar[i].innerHTML < 5 && nstar[i].innerHTML > 1)
+        {
+        nstar[i].innerHTML = nstar[i].innerHTML;
+         for(var z=1; z <= nstar[i].innerHTML; z++ )
+         {
+               rate[i].innerHTML+="<i class='bi bi-star-fill'></i>";
+                if(redes[i].innerHTML.length > 30)
+                {
+                    redes[i].innerHTML=redes[i].innerHTML.slice(0,30)+".....";
+                }
+         }
+         }
 
 }
