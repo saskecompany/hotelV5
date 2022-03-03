@@ -29,4 +29,5 @@
     <li>third type this command in src file after activate the virtual environment "pip install -r requierments.txt"</li>
     <li>fourth type final comand to run server "python manage.py runserver"</li>
     <li>finaly go to localhost:8000 to view your site and localhost:8000/admin to view your dashboard of this site and control on every thing </li>
+    <li><b>your user name is admin and pass is 1</b></li>
 </ol>
